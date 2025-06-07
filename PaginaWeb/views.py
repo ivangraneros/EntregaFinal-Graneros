@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404,redirect
-from django.views.generic import ListVIew, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Page
 from .forms import PageForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
