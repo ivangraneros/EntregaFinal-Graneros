@@ -7,7 +7,7 @@
   <p>Biografía: {{ user.userperfil.bio }}</p>
   <p>Fecha de nacimiento: {{ user.userperfil.birthdate }}</p>
   {% if user.userperfil.avatar %}
-    <img src="{{ user.userperfil.avatar.url }}" alt="Avatar" width="150">
+    <img src="{{ user.useravatar.avatar.url }}" alt="Avatar" width="150">
   {% endif %}
   <p><a href="{% url 'perfil_edit' %}">Editar perfil</a></p>
   <p><a href="{% url 'password_change' %}">Cambiar contraseña</a></p>

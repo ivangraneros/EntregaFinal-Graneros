@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ object.title }}</h1>
+  <h3>{{ object.subtitle }}</h3>
+  {% if object.image %}
+    <img src="{{ object.image.url }}" alt="Imagen" width="300">
+  {% endif %}
+  <p>{{ object.content }}</p>
+  <p>Autor: {{ object.author.username }} | Fecha: {{ object.date_created }}</p>
+
+  {% if user.is_authenticated and user == object.author %}
+    <a href="{% url 'page_update' object.pk %}">Editar</a>
+    <a href="{% url 'page_delete' object.pk %}">Borrar</a>
+  {% endif %}
+{% endblock %}

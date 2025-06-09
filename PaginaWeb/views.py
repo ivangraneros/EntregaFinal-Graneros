@@ -11,24 +11,26 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
+def index(request):
+    return render(request, "blog/inicio.html")
 
 #CRUD
 
 class PageListView(ListView):
     model = Page
-    template_name = 'pages/page_list.html'
+    template_name = 'PaginaWeb/pages/page_list.html'
     context_object_name = 'pages'
     
     
 class PageDetailView(DetailView):
     model = Page
-    template_name = 'pages/page_detail.html'
+    template_name = 'PaginaWeb/pages/page_detail.html'
 
 
 class PageCreateView(LoginRequiredMixin, CreateView):
     model = Page
     form_class = PageForm
-    template_name = 'pages/page_create.html'
+    template_name = 'PaginaWeb/pages/page_create.html'
     success_url = reverse_lazy('page_list')
 
 
@@ -40,25 +42,25 @@ class PageCreateView(LoginRequiredMixin, CreateView):
 class PageUpdateView(LoginRequiredMixin, UpdateView):
     model = Page
     form_class = PageForm
-    template_name = 'pages/page_update.html'
+    template_name = 'PaginaWeb/pages/page_update.html'
     success_url = reverse_lazy('page_list')
 
 
 class PageDeleteView(LoginRequiredMixin, DeleteView):
     model = Page
-    template_name = 'pages/page_delete.html'
+    template_name = 'PaginaWeb/pages/page_delete.html'
     success_url = reverse_lazy('page_list')
 
 
 #vista de about
 
 class AboutView(TemplateView):
-    template_name = 'Paginaweb/pages/about.html'
+    template_name = 'Paginaweb/static_pages/about.html'
 
 
 
 class InicioView(TemplateView):
-    template_name = 'pages/inicio.html'
+    template_name = 'Paginaweb/static_pages/inicio.html'
 
 
 #vista de perfil-acciones del perfil
@@ -66,12 +68,12 @@ class InicioView(TemplateView):
 
 class SignUpView(CreateView):
     form_class = UserRegisterForm
-    template_name = 'accounts/signup.html'
+    template_name = 'PaginaWeb/registro/signup.html'
     success_url = reverse_lazy('login')
 
 
 class CustomLoginView(LoginView):
-    template_name = 'accounts/login.html'
+    template_name = 'PaginaWeb/registro/login.html'
 
 
 class CustomLogoutView(LogoutView):
@@ -80,7 +82,7 @@ class CustomLogoutView(LogoutView):
 
 @login_required
 def profile_view(request):
-    return render(request, 'accounts/perfil.html')
+    return render(request, 'PaginaWeb/perfil/perfil.html')
 
 
 @login_required
@@ -92,9 +94,9 @@ def profile_edit_view(request):
             return redirect('perfil')
     else:
         form = UserProfileForm(instance=request.user.userprofile)
-    return render(request, 'accounts/editar_perfil.html', {'form':form})
+    return render(request, 'PaginaWeb/perfil/perfil_edit.html', {'form':form})
 
 
 class CustomPasswordChangeView(PasswordChangeView):
-    template_name = 'accounts/cambiar_contraseña.html'
+    template_name = 'PaginaWeb/registro/change_password.html'
     success_url = reverse_lazy('perfil')
