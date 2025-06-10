@@ -17,7 +17,9 @@ class Page(models.Model):
 
 
 class UserAvatar(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userperfil')
+    nombre = models.CharField(max_length = 100, blank=True)
+    apellido = models.CharField(max_length = 100, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='useravatar')
     avatar = models.ImageField(upload_to='avatares/', null=True, blank=True)
     bio =models.TextField(blank=True)
     birthdate = models.DateField(null=True, blank=True)

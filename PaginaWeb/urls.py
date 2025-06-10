@@ -8,14 +8,13 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('inicio/', views.index, name='inicio'),
-    path('inicio/', InicioView.as_view(), name = 'inicio'),
+    path('inicio/',InicioView.as_view(), name = 'inicio'),
     path('about/', AboutView.as_view(), name='about'),
 
     #pages
     path('pages/', PageListView.as_view(), name = 'page_list'),
+    path('pages/create/', PageCreateView.as_view(), name = 'page_create'),
     path('pages/<int:pk>/', PageDetailView.as_view(), name = 'page_detail'),
-    path('pages/create', PageCreateView.as_view(), name = 'page_create'),
     path('pages/<int:pk>/update/', PageUpdateView.as_view(), name = 'page_update'),
     path('pages/<int:pk>/delete/', PageDeleteView.as_view(), name = 'page_delete'),
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from .models import Page, UserAvatar
@@ -11,8 +11,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
-def index(request):
-    return render(request, "blog/inicio.html")
 
 #CRUD
 
@@ -60,7 +58,7 @@ class AboutView(TemplateView):
 
 
 class InicioView(TemplateView):
-    template_name = 'Paginaweb/static_pages/inicio.html'
+    template_name = 'base.html'
 
 
 #vista de perfil-acciones del perfil
@@ -77,23 +75,29 @@ class CustomLoginView(LoginView):
 
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('home')
+    next_page = reverse_lazy('inicio')
+    template_name = 'PaginaWeb/registro/logout.html'
 
 
 @login_required
 def profile_view(request):
-    return render(request, 'PaginaWeb/perfil/perfil.html')
+    user = request.user
+    return render(request, 'PaginaWeb/perfil/perfil.html', {'user': user})
 
 
 @login_required
 def profile_edit_view(request):
-    if request_method == 'POST':
-        form = UserProfileForm(request.POST, required.FILES, instance=request.user.userprofile)
+    user = request.user
+
+    profile, created = UserAvatar.objects.get_or_create(user=user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             return redirect('perfil')
     else:
-        form = UserProfileForm(instance=request.user.userprofile)
+        form = UserProfileForm(instance=profile)
     return render(request, 'PaginaWeb/perfil/perfil_edit.html', {'form':form})
 
 

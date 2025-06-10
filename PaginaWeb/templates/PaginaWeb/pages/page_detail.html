@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>{{ object.title }}</h1>
-  <h3>{{ object.subtitle }}</h3>
-  {% if object.image %}
-    <img src="{{ object.image.url }}" alt="Imagen" width="300">
+  <h1>{{ object.titulo }}</h1>
+  <h3>{{ object.subtitulo }}</h3>
+  {% if object.imagen %}
+    <img src="{{ object.imagen.url }}" alt="Imagen" width="300">
   {% endif %}
-  <p>{{ object.content }}</p>
-  <p>Autor: {{ object.author.username }} | Fecha: {{ object.date_created }}</p>
+  <p>{{ object.contenido }}</p>
+  <p>Autor: {{ object.autor.username }} | Fecha: {{ object.fecha_creacion }}</p>
 
-  {% if user.is_authenticated and user == object.author %}
+  {% if user.is_authenticated and user == object.autor %}
     <a href="{% url 'page_update' object.pk %}">Editar</a>
     <a href="{% url 'page_delete' object.pk %}">Borrar</a>
   {% endif %}
