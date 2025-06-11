@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 # Create your models here.
 
 
@@ -26,3 +27,18 @@ class UserAvatar(models.Model):
 
     def __str__(self):
         return f"Perfil de {self.user.username}{self.avatar}"
+
+
+# sistema de mensajeria
+
+
+class Mensaje(models.Model):
+    emisor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mensajes_enviados')
+    receptor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mensajes_recibidos')
+    contenido = models.TextField()
+    fecha = models.DateTimeField(default=timezone.now)
+    leido = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return f"De {self.emisor.username} para {self.receptor.username}"

@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>{{ object.titulo }}</h1>
-  <h3>{{ object.subtitulo }}</h3>
-  {% if object.imagen %}
-    <img src="{{ object.imagen.url }}" alt="Imagen" width="300">
-  {% endif %}
-  <p>{{ object.contenido }}</p>
-  <p>Autor: {{ object.autor.username }} | Fecha: {{ object.fecha_creacion }}</p>
-
-  {% if user.is_authenticated and user == object.autor %}
-    <a href="{% url 'page_update' object.pk %}">Editar</a>
-    <a href="{% url 'page_delete' object.pk %}">Borrar</a>
-  {% endif %}
+<section class="section-cards">
+    <div class="card" style="width: 300px;">
+      {% if object.imagen %}
+      <img src="{{ object.imagen.url }}" class="card-img-top" alt="Imagen" width="300">
+      {% endif %}
+      <div class="card-body">
+      <h2>{{ object.titulo }}</h2>
+      <h4>{{ object.subtitulo }}</h4>
+      <p class="card-text">{{ object.contenido }}</p>
+      <p>Autor: {{ object.autor.username }} | Fecha: {{ object.fecha_creacion }}</p>
+        {% if user.is_authenticated and user == object.autor %}
+          <a class="btn btn-primary text-white" href="{% url 'page_update' object.pk %}">Editar</a>
+          <a class="btn btn-primary text-white" href="{% url 'page_delete' object.pk %}">Borrar</a>
+        {% endif %}
+      </div>
+    </div>
+</section>
 {% endblock %}

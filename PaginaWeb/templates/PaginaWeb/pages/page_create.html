@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Crear nueva página</h1>
-  <form method="post" enctype="multipart/form-data">
+  <h1 class="text-white text-center">Crear nueva página</h1>
+  <form class="form-crear text-white" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Crear</button>
+    <button type="submit" class="btn btn-outline-light">Crear</button>
   </form>
 {% endblock %}

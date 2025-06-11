@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-white text-center mt-2">Bandeja de Entrada</h2>
+
+{% for mensaje in mensajes %}
+<main class="main-bandeja">
+  <div class="card-bandeja card rounded-3" style="width: 18rem;">
+    <div class="card-header">
+      De: {{ mensaje.emisor.username }}
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Para:{{ mensaje.receptor.username}}</li>
+      <li class="list-group-item">Contenido: {{ mensaje.contenido }}</li>
+      <li class="list-group-item">Fecha: {{ mensaje.fecha }}</li>
+        {% empty %}
+      <li>No tienes mensajes.</li>
+        {% endfor %}
+    </ul>
+      <a class="boton-bandeja btn btn-outline-light" href="{% url 'enviar_mensaje' %}">Enviar mensaje</a>
+  </div>
+</main>
+{% endblock %}

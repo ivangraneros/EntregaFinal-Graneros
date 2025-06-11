@@ -1,5 +1,5 @@
 from django import forms
-from .models import Page, UserAvatar
+from .models import Page, UserAvatar, Mensaje
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import DateInput
@@ -28,3 +28,9 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             'birthdate': DateInput(attrs={'type': 'date'}),
         }
+
+
+class MensajeForm(forms.ModelForm):
+    class Meta:
+        model = Mensaje
+        fields = ['receptor', 'contenido']

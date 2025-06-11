@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
-from .models import Page, UserAvatar
-from .forms import PageForm, UserRegisterForm, UserProfileForm
+from .models import Page, UserAvatar, Mensaje
+from .forms import PageForm, UserRegisterForm, UserProfileForm, MensajeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -104,3 +104,27 @@ def profile_edit_view(request):
 class CustomPasswordChangeView(PasswordChangeView):
     template_name = 'PaginaWeb/registro/change_password.html'
     success_url = reverse_lazy('perfil')
+
+
+#vista de mensajeria
+
+
+@login_required
+def bandeja_entrada(request):
+    mensajes = Mensaje.objects.filter(receptor=request.user).order_by('-fecha')
+    return render(request, 'PaginaWeb/mensajeria/bandeja.html', {'mensajes': mensajes})
+
+
+@login_required
+def enviar_mensajes(request):
+    if request.method == 'POST':
+        form = MensajeForm(request.POST)
+        if form.is_valid():
+            mensaje = form.save(commit=False)
+            mensaje.emisor = request.user
+            mensaje.save()
+            return redirect('bandeja')
+    else:
+        form = MensajeForm()
+    return render(request, 'PaginaWeb/mensajeria/enviar_mensaje.html', {'form': form})
+
