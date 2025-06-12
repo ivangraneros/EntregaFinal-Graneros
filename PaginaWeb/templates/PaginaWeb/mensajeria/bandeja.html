@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="text-white text-center mt-2">Bandeja de Entrada</h2>
+<h2 class="text-white text-center mt-1">Bandeja de Entrada</h2>
 
 {% for mensaje in mensajes %}
 <main class="main-bandeja">
@@ -15,8 +15,9 @@
         {% empty %}
       <li>No tienes mensajes.</li>
         {% endfor %}
+      <a class="boton-bandeja btn btn-outline-light mb-5" href="{% url 'enviar_mensaje' %}">Enviar mensaje</a>
     </ul>
-      <a class="boton-bandeja btn btn-outline-light" href="{% url 'enviar_mensaje' %}">Enviar mensaje</a>
+    
   </div>
 </main>
 {% endblock %}
