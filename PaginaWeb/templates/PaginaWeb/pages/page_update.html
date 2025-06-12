@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Editar página</h1>
-  <form method="post" enctype="multipart/form-data">
+  <h1 class="text-center text-white mt-3">Editar página</h1>
+  <form class="text-white m-3" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Guardar cambios</button>
+    <button class="mb-5 btn btn-outline-light" type="submit">Guardar cambios</button>
   </form>
 {% endblock %}

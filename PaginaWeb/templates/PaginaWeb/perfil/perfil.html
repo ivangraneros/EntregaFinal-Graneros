@@ -11,8 +11,8 @@
     {% if user.useravatar.avatar %}
       <li class="list-group-item"><img src="{{ user.useravatar.avatar.url }}" alt="Avatar" width="150"></li>
     {% endif %} 
-    <li class="list-group-item"><p><a class="text-primary" href="{% url 'perfil_edit' %}">Editar perfil</a></p></li>
-    <li class="list-group-item"><p><a class="text-primary" href="{% url 'password_change' %}">Cambiar contraseña</a></p></li>
+    <li class="list-group-item"><p><a class="text-white btn btn-primary btn-sm" href="{% url 'perfil_edit' %}">Editar perfil</a></p></li>
+    <li class="list-group-item"><p><a class="text-white btn btn-primary btn-sm" href="{% url 'password_change' %}">Cambiar contraseña</a></p></li>
   </ul>
 </main>
 {% endblock %}

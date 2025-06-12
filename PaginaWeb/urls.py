@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, reverse_lazy
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import PageListView, PageDetailView, PageCreateView, PageUpdateView, PageDeleteView, profile_edit_view, SignUpView, CustomLoginView, CustomLogoutView, profile_view,CustomPasswordChangeView, AboutView, InicioView, bandeja_entrada, enviar_mensajes
+from .views import PageListView, PageDetailView, PageCreateView, PageUpdateView, PageDeleteView, profile_edit_view, SignUpView, CustomLoginView, CustomLogoutView, profile_view,CustomPasswordChangeView, AboutView, InicioView, bandeja_entrada, enviar_mensajes, CustomPasswordChangeDoneView
 from . import views
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     path('perfil/', profile_view, name='perfil'),
     path('perfil/edit/', profile_edit_view, name='perfil_edit'),
     path('perfil/password/', CustomPasswordChangeView.as_view(), name='password_change'),
+    path('perfil/password/done', CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
 
 #mensaje
     path('mensajes/', bandeja_entrada, name='bandeja'),

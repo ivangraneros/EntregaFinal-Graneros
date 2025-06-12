@@ -1,3 +1,8 @@
+body {
+    padding-bottom: 100px; 
+}
+
+
 button, .nav-link {
     margin-right: 20px;
 }
@@ -13,7 +18,7 @@ button, .nav-link {
 
 section p {
     text-align: center;
-    padding: 30px;
+    padding: 40px;
 }
 
 .enlace {
@@ -50,4 +55,8 @@ section p {
 
 .boton-bandeja {
     margin-top: 10px;
+}
+
+.form-perfil p {
+    margin-bottom: 15px;
 }

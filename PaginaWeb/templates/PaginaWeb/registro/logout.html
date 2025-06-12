@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Sesión cerrada</h2>
-  <p>Has salido del sitio. <a href="{% url 'login' %}">Volver a entrar</a></p>
+<div class="container">
+    <div class="logout-box text-center">
+        <div class="logout-icon mb-3">
+            <i class="bi bi-box-arrow-right"></i>
+        </div>
+        <h2 class="text-white mb-3">Has cerrado sesión</h2>
+        <p class="text-white mb-4">Tu sesión se ha cerrado correctamente.</p>
+        <a href="{% url 'login' %}" class="btn btn-outline-light me-2">Iniciar sesión</a>
+        <a href="{% url 'inicio' %}" class="btn btn-light">Volver al inicio</a>
+    </div>
+</div>
 {% endblock %}

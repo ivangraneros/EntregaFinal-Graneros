@@ -5,7 +5,7 @@ from .models import Page, UserAvatar, Mensaje
 from .forms import PageForm, UserRegisterForm, UserProfileForm, MensajeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
@@ -75,7 +75,7 @@ class CustomLoginView(LoginView):
 
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('inicio')
+    next_page = reverse_lazy('logout')
     template_name = 'PaginaWeb/registro/logout.html'
 
 
@@ -103,7 +103,11 @@ def profile_edit_view(request):
 
 class CustomPasswordChangeView(PasswordChangeView):
     template_name = 'PaginaWeb/registro/change_password.html'
-    success_url = reverse_lazy('perfil')
+    success_url = reverse_lazy('password_change_done')
+
+
+class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    template_name = 'PaginaWeb/registro/password_change_done.html'
 
 
 #vista de mensajeria

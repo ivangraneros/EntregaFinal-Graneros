@@ -1,5 +1,6 @@
 # EntregaFinal-Graneros
 
+- /inicio/ es la pagina principal
 
 # Proyecto Final: Playground Blog
 
@@ -27,6 +28,7 @@ Este es un proyecto individual desarrollado como entrega final del curso. Se tra
 - Navegación clara y estructurada (NavBar)
 - Mensajes de aviso si no hay páginas aún
 - Imagen de perfil, biografía y fecha de nacimiento
+- Sistema de mensajeria dentro de la APP
 
 ## 📂 Estructura principal
 
